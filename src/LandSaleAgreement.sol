@@ -61,9 +61,7 @@ contract LandSaleAgreement {
     event DisputeRaised(uint indexed saleId, address indexed who);
     event DisputeResolved(uint indexed saleId, address indexed to, uint amountOut);
 
-    // ------------------
-    // Firm / property management
-    // ------------------
+ 
 
     function registerProperty(uint _propertyId, address _owner, string calldata _metadataURI) external onlyFirm {
         Property storage p = properties[_propertyId];
@@ -103,10 +101,7 @@ contract LandSaleAgreement {
         emit PropertyDelisted(_propertyId);
     }
 
-    // ------------------
-    // Buyer flow
-    // ------------------
-
+  
     function payHalf(uint _saleId) external payable {
         Sale storage s = sales[_saleId];
         require(s.saleId != 0, "Sale not found");
@@ -161,11 +156,7 @@ contract LandSaleAgreement {
         emit RemainingPaidAndCompleted(_saleId, msg.sender, msg.value);
     }
 
-    // ------------------
-    // Dispute handling — only the Lagos State MultiDoor Courthouse can resolve
-    // ------------------
-
-    function raiseDispute(uint _saleId) external {
+        function raiseDispute(uint _saleId) external {
         Sale storage s = sales[_saleId];
         require(s.saleId != 0, "Sale not found");
         require(msg.sender == s.buyer || msg.sender == s.seller, "Only buyer or seller can raise dispute");
