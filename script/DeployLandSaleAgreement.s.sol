@@ -5,8 +5,7 @@ import "forge-std/Script.sol";
 import "../src/LandSaleAgreement.sol";
 
 contract DeployLandSaleAgreement is Script {
-    // only the courthouse needs to be passed to the constructor
-    address public lagosCourthouse = 0xEF49AD8283b2A40c347892695963fd7c8756aFfe;
+        address public lagosCourthouse = 0xEF49AD8283b2A40c347892695963fd7c8756aFfe;
 
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
@@ -14,8 +13,7 @@ contract DeployLandSaleAgreement is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        // Pass a single argument because the contract sets firm = msg.sender in its constructor
-        LandSaleAgreement landSale = new LandSaleAgreement(lagosCourthouse);
+       LandSaleAgreement landSale = new LandSaleAgreement(lagosCourthouse);
 
         vm.stopBroadcast();
 
